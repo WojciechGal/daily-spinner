@@ -16,3 +16,11 @@ Person.prototype.setTimeElapsed = function (timeElapsed) {
 Person.prototype.addCard = function (card) {
     this.cards.push(card)
 }
+
+Person.prototype.cleanElapsedTime = function () {
+    this.timeElapsed = null
+}
+
+Person.prototype.cleanCards = function () {
+    this.cards = []
+}
