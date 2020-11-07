@@ -19,6 +19,7 @@
 <script>
 import {getters as dailyCourseGetters, actions as dailyCourseActions} from '@/store/modules/daily/dailyCourse.module';
 import {getters as configGetters} from '@/store/modules/configuration/configuration.module';
+import {actions as activePersonActions} from "@/store/modules/daily/activePerson.module";
 import {DailyCourse} from "@/model/daily/DailyCourse.model";
 
 export default {
@@ -51,6 +52,25 @@ export default {
     },
     finishDaily() {
       dailyCourseActions.finishDaily()
+    },
+    giveYellowCard() {
+      activePersonActions.giveYellowCard()
+    },
+    giveRedCard() {
+      activePersonActions.giveRedCard()
+    }
+  },
+  watch: {
+    getActiveClock: {
+      deep: true,
+      immediate: true,
+      handler: function (clock) {
+        if (clock !== null && clock?.timeElapsed === (clock?.timeGiven / 2)) {
+          this.giveYellowCard()
+        } else if (clock !== null && clock?.timeElapsed === clock?.timeGiven) {
+          this.giveRedCard()
+        }
+      }
     }
   }
 }
