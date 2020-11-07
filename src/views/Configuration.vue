@@ -29,8 +29,7 @@
 import {
   actions,
   getters
-} from '@/store/modules/configuration.module';
-import {Configuration} from "@/model/configuration/Configuration.model";
+} from '@/store/modules/configuration/configuration.module';
 import Person from "@/components/configuration/Person";
 
 export default {
@@ -43,9 +42,6 @@ export default {
     }
   },
   methods: {
-    testUpdateConfig() {
-      actions.changeConfiguration(new Configuration([], (this.getConfig.timePerPerson) + 1))
-    },
     addPerson() {
       actions.addPerson(this.givenName)
       this.givenName = ''

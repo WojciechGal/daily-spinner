@@ -11,6 +11,6 @@ export class DailyCourse {
 
 DailyCourse.prototype.transferPerson = function (givenPerson, timeElapsed) {
     this.notFinishedPeople = this.notFinishedPeople.filter(person => person.id !== givenPerson.id)
-    givenPerson.setTimeSpoken(timeElapsed)
+    givenPerson.setTimeElapsed(timeElapsed)
     this.finishedPeople.push(givenPerson)
 }

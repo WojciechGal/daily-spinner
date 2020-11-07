@@ -4,13 +4,13 @@ export class Person {
     constructor(name) {
         this.id = createUUID()
         this.name = name;
-        this.timeSpoken = null
+        this.timeElapsed = null
         this.cards = []
     }
 }
 
-Person.prototype.setTimeSpoken = function (timeSpoken) {
-    this.timeSpoken = timeSpoken
+Person.prototype.setTimeElapsed = function (timeElapsed) {
+    this.timeElapsed = timeElapsed
 };
 
 Person.prototype.addCard = function (card) {

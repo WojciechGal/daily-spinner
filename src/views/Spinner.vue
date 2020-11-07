@@ -17,11 +17,8 @@
 </template>
 
 <script>
-import {
-  actions,
-  getters
-} from '@/store/modules/daily.module';
-import {getters as configGetters} from '@/store/modules/configuration.module';
+import {getters as dailyCourseGetters, actions as dailyCourseActions} from '@/store/modules/daily/dailyCourse.module';
+import {getters as configGetters} from '@/store/modules/configuration/configuration.module';
 import {DailyCourse} from "@/model/daily/DailyCourse.model";
 
 export default {
@@ -33,27 +30,27 @@ export default {
   },
   computed: {
     getDailyCourse() {
-      return getters.daily()
+      return dailyCourseGetters.dailyCourse()
     },
     getConfig() {
       return configGetters.configuration()
     },
     getActivePerson() {
-      return getters.activePerson()
+      return dailyCourseGetters.activePerson()
     },
     getActiveClock() {
-      return getters.activeClock()
+      return dailyCourseGetters.activeClock()
     }
   },
   methods: {
     startDaily() {
-      actions.startDaily(new DailyCourse(this.getConfig))
+      dailyCourseActions.startDaily(new DailyCourse(this.getConfig))
     },
     nextPerson() {
-      actions.nextPerson()
+      dailyCourseActions.nextPerson()
     },
     finishDaily() {
-      actions.finishDaily()
+      dailyCourseActions.finishDaily()
     }
   }
 }

@@ -1,9 +1,9 @@
 import Vue from 'vue';
-import configTemplate from "@/templates/configuration.template";
+import configTemplate from "@/templates/configuration/configuration.template";
 
 const state = Vue.observable({
     configuration: configTemplate,
-    daily: null,
+    dailyCourse: null,
     activePerson: null,
     activeClock: null
 });
