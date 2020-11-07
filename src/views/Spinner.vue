@@ -17,10 +17,9 @@
 </template>
 
 <script>
-import {getters as dailyCourseGetters, actions as dailyCourseActions} from '@/store/modules/daily/dailyCourse.module';
+import {getters as spinnerGetters, actions as spinnerActions} from '@/store/modules/spinner/spinner.module';
 import {getters as configGetters} from '@/store/modules/configuration/configuration.module';
-import {actions as activePersonActions} from "@/store/modules/daily/activePerson.module";
-import {DailyCourse} from "@/model/daily/DailyCourse.model";
+import {DailyCourse} from "@/model/spinner/DailyCourse.model";
 
 export default {
   name: "Spinner",
@@ -31,33 +30,33 @@ export default {
   },
   computed: {
     getDailyCourse() {
-      return dailyCourseGetters.dailyCourse()
+      return spinnerGetters.dailyCourse()
     },
     getConfig() {
       return configGetters.configuration()
     },
     getActivePerson() {
-      return dailyCourseGetters.activePerson()
+      return spinnerGetters.activePerson()
     },
     getActiveClock() {
-      return dailyCourseGetters.activeClock()
+      return spinnerGetters.activeClock()
     }
   },
   methods: {
     startDaily() {
-      dailyCourseActions.startDaily(new DailyCourse(this.getConfig))
+      spinnerActions.startDaily(new DailyCourse(this.getConfig))
     },
     nextPerson() {
-      dailyCourseActions.nextPerson()
+      spinnerActions.nextPerson()
     },
     finishDaily() {
-      dailyCourseActions.finishDaily()
+      spinnerActions.finishDaily()
     },
     giveYellowCard() {
-      activePersonActions.giveYellowCard()
+      spinnerActions.giveYellowCard()
     },
     giveRedCard() {
-      activePersonActions.giveRedCard()
+      spinnerActions.giveRedCard()
     }
   },
   watch: {

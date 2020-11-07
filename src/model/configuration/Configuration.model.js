@@ -1,4 +1,4 @@
-import createUUID from "@/utils/id.utils";
+import createUUID from "@/utils/common/id.utils";
 
 export class Configuration {
     constructor(people, timePerPerson) {

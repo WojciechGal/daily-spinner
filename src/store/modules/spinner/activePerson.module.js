@@ -1,5 +1,4 @@
 import state from '../../store';
-import {getRedCard, getYellowCard} from "@/utils/daily/card.utils";
 
 export const getters = {
     activePerson: () => state.activePerson
@@ -13,7 +12,6 @@ const mutations = {
 
 export const actions = {
     setActivePerson: (person) => mutations.overrideActivePerson(person),
-    dismantleActivePerson: () => mutations.nullifyActivePerson(),
-    giveYellowCard: () => mutations.addCardToActivePerson(getYellowCard()),
-    giveRedCard: () => mutations.addCardToActivePerson(getRedCard())
+    giveCard: (card) => mutations.addCardToActivePerson(card),
+    dismantleActivePerson: () => mutations.nullifyActivePerson()
 };

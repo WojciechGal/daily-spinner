@@ -1,4 +1,4 @@
-import {Card} from "@/model/daily/Card.model";
+import {Card} from "@/model/spinner/Card.model";
 
 export function getYellowCard() {
     return new Card(1, "Yellow")
