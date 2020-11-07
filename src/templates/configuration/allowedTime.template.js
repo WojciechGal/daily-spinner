@@ -1,1 +1,1 @@
-export default [60, 120, 180, 240, 300];
+export default [1, 2, 3, 4, 5];

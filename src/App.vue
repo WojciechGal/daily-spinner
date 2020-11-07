@@ -1,27 +1,20 @@
 <template>
   <div id="app">
-    <header>
-      <v-tabs fixed-tabs>
-        <v-tab :to="routes[1].path">{{routes[1].name}}</v-tab>
-        <v-tab :to="routes[2].path">{{routes[2].name}}</v-tab>
-      </v-tabs>
-    </header>
-    <main>
-      <router-view />
-    </main>
+    <v-app>
+      <Header/>
+      <main>
+        <router-view />
+      </main>
+    </v-app>
   </div>
 </template>
 
 <script>
-import routes from "@/router/routes";
+import Header from "@/components/common/Header";
 
 export default {
   name: 'App',
-  data() {
-    return {
-      routes: routes
-    }
-  }
+  components: {Header}
 }
 </script>
 
@@ -31,6 +24,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  background-image: url(./assets/wallpaper/casino.jpg);
+  background-size: cover;
+  height: 100%;
+  margin-left: -2px;
 }
 </style>

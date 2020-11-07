@@ -3,11 +3,26 @@
     CONFIG
     <div>
       <div>Time per person in daily is: {{getConfig.timePerPerson}}</div>
-      <div>
-        <select class="test-select" v-model="selectedTime">
-          <option v-for="time in allowedTime" :key="time" :value="time">{{time/60}}</option>
-        </select>
-      </div>
+<!--      <div>-->
+<!--        <select class="test-select" v-model="selectedTime">-->
+<!--          <option v-for="time in allowedTime" :key="time" :value="time">{{time/60}}</option>-->
+<!--        </select>-->
+<!--      </div>-->
+      <v-col cols="1">
+        <v-select
+            v-model="selectedTime"
+            :items="allowedTime"
+            menu-props="auto"
+            label="Select"
+            hide-details
+            prepend-icon="mdi-clock"
+            single-line
+            outlined
+            light
+            color="red"
+            item-color="red"
+        ></v-select>
+      </v-col>
     </div>
     <div class="flex-container">
       <div class="left-side">
@@ -60,13 +75,14 @@ export default {
   },
   watch: {
     selectedTime: (val => {
-      actions.updateTime(val)
+      actions.updateTime(val * 60)
     })
   }
 }
 </script>
 
 <style scoped>
+
   .flex-container {
     display: flex;
   }
