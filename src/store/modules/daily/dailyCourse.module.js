@@ -3,6 +3,7 @@ import {actions as activePersonActions, getters as activePersonGetters} from '@/
 import {actions as activeClockActions, getters as activeClockGetters} from '@/store/modules/daily/activeClock.module';
 import {drawPerson} from "@/utils/daily/random.utils";
 import {Clock} from "@/model/daily/Clock.model";
+import convertSecToMin from "@/utils/daily/time.utils";
 
 export const getters = {
     dailyCourse: () => state.dailyCourse,
@@ -22,12 +23,12 @@ export const actions = {
         activeClockActions.setActiveClock(new Clock(dailyCourse.timePerPerson))
     },
     nextPerson: function () {
-        mutations.transferDailyPerson(activePersonGetters.activePerson(), activeClockGetters.activeClock().timeElapsed)
+        mutations.transferDailyPerson(activePersonGetters.activePerson(), convertSecToMin(activeClockGetters.activeClock().timeElapsed))
         activeClockActions.resetClock()
         activePersonActions.setActivePerson(drawPerson(getters.dailyCourse().notFinishedPeople))
     },
     finishDaily: function () {
-        mutations.transferDailyPerson(activePersonGetters.activePerson(), activeClockGetters.activeClock().timeElapsed)
+        mutations.transferDailyPerson(activePersonGetters.activePerson(), convertSecToMin(activeClockGetters.activeClock().timeElapsed))
         activePersonActions.dismantleActivePerson()
         activeClockActions.dismantleActiveClock()
     }

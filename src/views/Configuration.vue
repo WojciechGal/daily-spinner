@@ -5,9 +5,7 @@
       <div>Time per person in daily is: {{getConfig.timePerPerson}}</div>
       <div>
         <select class="test-select" v-model="selectedTime">
-          <option value="60">60</option>
-          <option value="120">120</option>
-          <option value="180">180</option>
+          <option v-for="time in allowedTime" :key="time" :value="time">{{time/60}}</option>
         </select>
       </div>
     </div>
@@ -31,6 +29,7 @@ import {
   getters
 } from '@/store/modules/configuration/configuration.module';
 import Person from "@/components/configuration/Person";
+import allowedTime from "@/templates/configuration/allowedTime.template";
 
 export default {
   name: "Configuration",
@@ -38,7 +37,8 @@ export default {
   data() {
     return {
       selectedTime: null,
-      givenName: ''
+      givenName: '',
+      allowedTime: allowedTime
     }
   },
   methods: {
