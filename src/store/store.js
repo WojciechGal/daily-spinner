@@ -1,9 +1,11 @@
 import Vue from 'vue';
-import {Configuration} from "@/model/configuration/Configuration.model";
-import {Person} from "@/model/configuration/Person.model";
+import configTemplate from "@/templates/configuration.template";
 
 const state = Vue.observable({
-    configuration: new Configuration([new Person("Włodek")], 120)
+    configuration: configTemplate,
+    daily: null,
+    activePerson: null,
+    activeClock: null
 });
 
 export default state;

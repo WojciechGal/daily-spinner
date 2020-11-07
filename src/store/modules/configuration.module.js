@@ -1,5 +1,5 @@
 import state from '../store';
-import {Person} from "@/model/configuration/Person.model";
+import {Person} from "@/model/Person.model";
 
 export const getters = {
     configuration: () => state.configuration
