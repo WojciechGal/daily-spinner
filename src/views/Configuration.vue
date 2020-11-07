@@ -13,7 +13,7 @@ import {
   actions,
   getters
 } from '@/store/modules/configuration.module';
-import {Configuration} from "@/model/Configuration.model";
+import {Configuration} from "@/model/configuration/Configuration.model";
 
 export default {
   name: "Configuration",
