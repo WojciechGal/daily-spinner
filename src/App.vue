@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <header>
-      <router-link :to="routes[1].path">{{routes[1].name}}</router-link>
-      <router-link :to="routes[2].path">{{routes[2].name}}</router-link>
+      <v-tabs fixed-tabs>
+        <v-tab :to="routes[1].path">{{routes[1].name}}</v-tab>
+        <v-tab :to="routes[2].path">{{routes[2].name}}</v-tab>
+      </v-tabs>
     </header>
     <main>
       <router-view />
