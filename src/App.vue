@@ -29,4 +29,16 @@ export default {
   height: 100%;
   margin-left: -2px;
 }
+
+/*styles needed for hide vuetify automatic scrollbar*/
+html {
+  overflow: hidden !important;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
 </style>
