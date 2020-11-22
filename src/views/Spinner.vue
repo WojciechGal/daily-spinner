@@ -3,21 +3,6 @@
     <Modal v-if="slotMachineTurnedOn">
       <SlotMachineAnimation slot="animation"/>
     </Modal>
-    <div>
-      SPINNER
-      <div>
-        Daily now: {{getDailyCourse}}
-      </div>
-      <!--      <div>-->
-      <!--        <button class="test-button" @click="startDaily">START DAILY</button>-->
-      <!--        <button class="test-button" @click="nextPerson">NEXT PERSON </button>-->
-      <!--        <button class="test-button" @click="finishDaily">/ FINISH </button>-->
-      <!--      </div>-->
-      <div>
-        current person: {{getActivePerson}}
-        time: {{getActiveClock}}
-      </div>
-    </div>
     <OperativeButtonsRow
         :daily-course="getDailyCourse"
         @start-daily="startDaily"
@@ -28,6 +13,11 @@
         v-if="getActivePerson && getActiveClock"
         :speaker="getActivePerson"
         :clock="getActiveClock"
+    />
+    <HistoryContainer
+        v-if="getDailyCourse && getDailyCourse.finishedPeople.length"
+        :finished-people="getDailyCourse.finishedPeople"
+        :bigger-scale="!getActivePerson && !getActiveClock"
     />
   </v-container>
 </template>
@@ -40,10 +30,11 @@ import OperativeButtonsRow from "@/components/spinner/OperativeButtonsRow";
 import Modal from "@/components/spinner/Modal";
 import SlotMachineAnimation from "@/components/spinner/SlotMachineAnimation";
 import SpeakerPanel from "@/components/spinner/SpeakerPanel";
+import HistoryContainer from "@/components/spinner/HistoryContainer";
 
 export default {
   name: "Spinner",
-  components: {SpeakerPanel, SlotMachineAnimation, Modal, OperativeButtonsRow},
+  components: {HistoryContainer, SpeakerPanel, SlotMachineAnimation, Modal, OperativeButtonsRow},
   data() {
     return {
       slotMachineTurnedOn: false
@@ -63,6 +54,7 @@ export default {
       return spinnerGetters.activeClock()
     }
   },
+  //todo w widoku spinnera: fix tapety, fix modalu animacji i dodanie na nast. osoby, animacje kartek testy na tel.
   methods: {
     startDaily() {
       this.turnOnDrawingAnimation()
@@ -107,9 +99,5 @@ export default {
 </script>
 
 <style scoped>
-.test-button {
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-}
+
 </style>

@@ -3,13 +3,20 @@
     <v-card
       color="red"
       width="500"
+      class="ma-3"
     >
-      <div>
-        Now speaks: {{speaker.name}}
-      </div>
-      <div>
-        <Clock :seconds-left="clock.timeLeft"/>
-      </div>
+      <v-row>
+        <v-col>
+          <p class="speaker">
+            Now speaks: {{speaker.name}}
+          </p>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <Clock :seconds-left="clock.timeLeft"/>
+        </v-col>
+      </v-row>
     </v-card>
   </v-row>
 </template>
@@ -40,6 +47,11 @@ export default {
 
 <style scoped>
 
-
+.speaker {
+  font-family: Candara, serif;
+  letter-spacing: 0.03em;
+  font-size: 30px;
+  margin-bottom: 0;
+}
 
 </style>

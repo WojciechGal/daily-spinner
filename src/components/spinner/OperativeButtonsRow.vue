@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-btn
         v-if="!dailyCourse || dailyCourse.notFinishedPeople.length === 0"
-        class="ma-4"
+        class="ma-3"
         color="success"
         @click="startDaily"
     >
@@ -10,7 +10,7 @@
     </v-btn>
     <v-btn
         v-else-if="dailyCourse && dailyCourse.notFinishedPeople.length > 1"
-        class="ma-4"
+        class="ma-3"
         color="warning"
         @click="nextPerson"
     >
@@ -18,7 +18,7 @@
     </v-btn>
     <v-btn
         v-if="dailyCourse && dailyCourse.notFinishedPeople.length === 1"
-        class="ma-4"
+        class="ma-3"
         color="error"
         @click="finishDaily"
     >
