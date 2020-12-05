@@ -1,8 +1,12 @@
 <template>
   <v-container>
-    <Modal v-if="slotMachineTurnedOn">
-      <SlotMachineAnimation slot="animation"/>
-    </Modal>
+    <v-dialog
+        max-width="290"
+        v-model="slotMachineTurnedOn"
+        transition="false"
+    >
+      <SlotMachineAnimation/>
+    </v-dialog>
     <OperativeButtonsRow
         :daily-course="getDailyCourse"
         @start-daily="startDaily"
@@ -27,14 +31,13 @@ import {actions as spinnerActions, getters as spinnerGetters} from '@/store/modu
 import {getters as configGetters} from '@/store/modules/configuration/configuration.module';
 import {DailyCourse} from "@/model/spinner/DailyCourse.model";
 import OperativeButtonsRow from "@/components/spinner/OperativeButtonsRow";
-import Modal from "@/components/spinner/Modal";
 import SlotMachineAnimation from "@/components/spinner/SlotMachineAnimation";
 import SpeakerPanel from "@/components/spinner/SpeakerPanel";
 import HistoryContainer from "@/components/spinner/HistoryContainer";
 
 export default {
   name: "Spinner",
-  components: {HistoryContainer, SpeakerPanel, SlotMachineAnimation, Modal, OperativeButtonsRow},
+  components: {HistoryContainer, SpeakerPanel, SlotMachineAnimation, OperativeButtonsRow},
   data() {
     return {
       slotMachineTurnedOn: false
@@ -54,14 +57,14 @@ export default {
       return spinnerGetters.activeClock()
     }
   },
-  //todo w widoku spinnera: fix tapety, fix modalu animacji i dodanie na nast. osoby, animacje kartek testy na tel.
+  //todo w widoku spinnera: fix tapety, dodanie modalu animacji na nast. osoby, animacje kartek, testy na tel.
   methods: {
     startDaily() {
       this.turnOnDrawingAnimation()
       setTimeout(() => {
         this.turnOffDrawingAnimation()
         spinnerActions.startDaily(new DailyCourse(this.getConfig))
-      }, 4800)
+      }, 5000)
     },
     nextPerson() {
       spinnerActions.nextPerson()
