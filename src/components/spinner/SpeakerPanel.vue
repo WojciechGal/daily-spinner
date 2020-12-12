@@ -52,7 +52,6 @@ export default {
 <style scoped>
 
 .speaker {
-  font-family: Candara, serif;
   letter-spacing: 0.03em;
   font-size: 30px;
   margin-bottom: 0;

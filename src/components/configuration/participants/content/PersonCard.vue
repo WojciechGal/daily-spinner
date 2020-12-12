@@ -2,17 +2,14 @@
   <v-card
       width="350"
       color="red"
-      class="margin-bottom"
   >
-    <v-row
-        align="center"
-    >
+    <v-row align="center">
       <v-col>
-        <div>
+        <div class="person-name">
           {{person.name}}
         </div>
       </v-col>
-      <v-col cols="5">
+      <v-col>
         <v-btn
             class="ma-3"
             color="warning"
@@ -27,7 +24,7 @@
 
 <script>
 export default {
-  name: "Person",
+  name: "PersonCard",
   props: {
     person: {
       type: Object,
@@ -44,8 +41,8 @@ export default {
 
 <style scoped>
 
-  .margin-bottom {
-    margin-bottom: 20px;
-  }
+.person-name {
+  font-weight: bold;
+}
 
 </style>

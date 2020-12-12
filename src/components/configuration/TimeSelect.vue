@@ -2,6 +2,7 @@
   <v-card
       width="600"
       color="red"
+      class="ma-3"
   >
     <v-row
         align="center"

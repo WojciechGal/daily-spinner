@@ -2,6 +2,7 @@
   <div id="app">
     <v-app>
       <Header/>
+      <NotificationModule/>
       <main>
         <router-view />
       </main>
@@ -11,23 +12,26 @@
 
 <script>
 import Header from "@/components/common/Header";
+import NotificationModule from "@/components/common/NotificationModule";
 
 export default {
   name: 'App',
-  components: {Header}
+  components: {NotificationModule, Header}
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+
   background-image: url(./assets/wallpaper/casino.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+
+  font-family: Candara ,serif;
 }
 
 /*styles needed for hide vuetify automatic scrollbar*/

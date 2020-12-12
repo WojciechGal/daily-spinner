@@ -2,7 +2,7 @@
   <v-card
       width="600"
       color="red"
-      class="ma-1 statistics-card"
+      class="ma-0 statistics-card"
   >
     <v-row align="center">
       <v-col class="person-name-column">
@@ -49,7 +49,6 @@ export default {
 <style scoped>
 
 .statistics-card {
-  font-family: Candara, serif;
   font-size: 18px;
 }
 

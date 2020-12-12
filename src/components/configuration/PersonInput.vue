@@ -2,25 +2,24 @@
   <v-card
       width="500"
       color="red"
+      class="ma-3"
   >
-    <v-row
-        align="center"
-    >
+    <v-row align="center">
       <v-col>
         <v-text-field
-            class="margin-left"
             v-model="givenName"
-            placeholder="Enter name for new participant"
+            placeholder="Enter name"
             color="black"
+            class="text-input"
         />
       </v-col>
-      <v-col cols="4">
+      <v-col>
         <v-btn
             class="ma-4"
             color="success"
             @click="addPerson"
         >
-          Add
+          Add participant
         </v-btn>
       </v-col>
     </v-row>
@@ -29,6 +28,7 @@
 
 <script>
 import {actions, getters} from "@/store/modules/configuration/configuration.module";
+import notificationsEventBus from "@/notification/notificationsEventBus";
 
 export default {
   name: "PersonInput",
@@ -39,8 +39,12 @@ export default {
   },
   methods: {
     addPerson() {
-      actions.addPerson(this.givenName)
-      this.givenName = ''
+      if (this.givenName !== '') {
+        actions.addPerson(this.givenName)
+        this.givenName = ''
+      } else {
+        notificationsEventBus.$emit('turn-on-no-input-notification')
+      }
     }
   },
   computed: {
@@ -52,7 +56,12 @@ export default {
 </script>
 
 <style scoped>
-  .margin-left {
-    margin-left: 50px;
-  }
+
+.text-input {
+  font-size: 20px;
+  margin-left: 3vw;
+  margin-right: 8px;
+  min-width: 100px;
+}
+
 </style>

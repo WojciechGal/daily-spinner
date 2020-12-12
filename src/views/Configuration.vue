@@ -1,23 +1,15 @@
 <template>
   <div>
-    <SettingsGif/>
     <v-container>
-      <v-row
-          justify="center"
-          class="upper-margin"
-      >
+      <v-row justify="center">
         <TimeSelect/>
       </v-row>
-      <v-row
-          justify="center"
-          class="upper-margin offset-left"
-      >
-        <v-col>
-          <PeopleContainer/>
-        </v-col>
-        <v-col>
-          <PersonInput/>
-        </v-col>
+      <v-row justify="center">
+        <PersonInput/>
+      </v-row>
+      <v-row justify="center">
+            <SettingsAnimation/>
+            <PeopleContainer/>
       </v-row>
     </v-container>
   </div>
@@ -25,24 +17,16 @@
 
 <script>
 import TimeSelect from "@/components/configuration/TimeSelect";
-import SettingsGif from "@/components/configuration/SettingsGif";
 import PeopleContainer from "@/components/configuration/participants/ParticipantsContainer";
 import PersonInput from "@/components/configuration/PersonInput";
+import SettingsAnimation from "@/components/configuration/SettingsAnimation";
 
 export default {
   name: "Configuration",
-  components: {PersonInput, PeopleContainer, SettingsGif, TimeSelect}
+  components: {SettingsAnimation, PersonInput, PeopleContainer, TimeSelect}
 }
 </script>
 
 <style scoped>
-
-.upper-margin {
-  margin-top: 50px;
-}
-
-.offset-left {
-  margin-left: 200px;
-}
 
 </style>

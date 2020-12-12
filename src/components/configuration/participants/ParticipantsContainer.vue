@@ -2,11 +2,15 @@
   <v-card
     width="400"
     color="red"
-    class="container-props"
+    class="ma-3 internal-padding"
   >
     <div v-if="getConfig.people.length > 0">
       <template v-for="person in getConfig.people">
-        <Person :key="person.id" :person="person" @remove="removePerson"/>
+        <v-row justify="center" :key="person.id">
+          <v-col align="center">
+            <PersonCard :person="person" @remove="removePerson"/>
+          </v-col>
+        </v-row>
       </template>
     </div>
     <div v-else class="margin-bottom">
@@ -16,7 +20,7 @@
 </template>
 
 <script>
-import Person from "@/components/configuration/participants/content/PersonCard";
+import PersonCard from "@/components/configuration/participants/content/PersonCard";
 import {
   actions,
   getters
@@ -24,7 +28,7 @@ import {
 
 export default {
   name: "PeopleContainer",
-  components: {Person},
+  components: {PersonCard},
   methods: {
     removePerson(id) {
       actions.removePerson(id)
@@ -40,14 +44,9 @@ export default {
 
 <style scoped>
 
-  .container-props {
-    padding: 25px 25px 5px 25px;
-    max-height: 450px;
-    overflow-y: auto;
-  }
-
-  .margin-bottom {
-    margin-bottom: 16px;
-  }
+.internal-padding {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
 
 </style>
