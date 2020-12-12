@@ -4,6 +4,9 @@
     color="red"
     class="ma-3 internal-padding"
   >
+    <v-row justify="center">
+      <div class="card-title">Participants:</div>
+    </v-row>
     <div v-if="getConfig.people.length > 0">
       <template v-for="person in getConfig.people">
         <v-row justify="center" :key="person.id">
@@ -47,6 +50,11 @@ export default {
 .internal-padding {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 </style>
