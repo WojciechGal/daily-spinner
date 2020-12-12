@@ -3,7 +3,7 @@
       class="modal-fader"
       :class="{faderIn: !closeModal, faderOut: closeModal}"
   >
-    <slot name="animation"/>
+    <slot name="content"/>
   </div>
 </template>
 

@@ -1,7 +1,8 @@
 <template>
   <v-container>
-    <Modal v-if="modalWithAnimationOn" :timeout="modalTimeout" @modal-closed="executeAction">
-      <SlotMachineAnimation v-if="modalAnimationType === 'slot-machine'" slot="animation"/>
+    <Modal v-if="modalOn" :timeout="modalTimeout" @modal-closed="executeAction">
+      <SlotMachineAnimation v-if="modalContent === 'slot-machine'" slot="content"/>
+      <Card v-else :card-type="modalContent" slot="content"/>
     </Modal>
     <OperativeButtonsRow
         :daily-course="getDailyCourse"
@@ -30,15 +31,16 @@ import Modal from "@/components/spinner/Modal";
 import SlotMachineAnimation from "@/components/spinner/SlotMachineAnimation";
 import SpeakerPanel from "@/components/spinner/SpeakerPanel";
 import HistoryContainer from "@/components/spinner/HistoryContainer";
+import Card from "@/components/spinner/Card";
 
 export default {
   name: "Spinner",
-  components: {HistoryContainer, SpeakerPanel, Modal, SlotMachineAnimation, OperativeButtonsRow},
+  components: {Card, HistoryContainer, SpeakerPanel, Modal, SlotMachineAnimation, OperativeButtonsRow},
   data() {
     return {
-      modalWithAnimationOn: false,
+      modalOn: false,
       modalTimeout: Number,
-      modalAnimationType: '',
+      modalContent: '',
       currentAction: Function
     }
   },
@@ -72,18 +74,26 @@ export default {
     },
     giveYellowCard() {
       spinnerActions.giveYellowCard()
+      this.modalContent = 'yellow-card'
+      this.modalTimeout = 2500
+      this.modalOn = true
     },
     giveRedCard() {
       spinnerActions.giveRedCard()
+      this.modalContent = 'red-card'
+      this.modalTimeout = 2500
+      this.modalOn = true
     },
     turnOnSlotAnimation(timeout) {
-      this.modalAnimationType = 'slot-machine'
+      this.modalContent = 'slot-machine'
       this.modalTimeout = timeout
-      this.modalWithAnimationOn = true
+      this.modalOn = true
     },
     executeAction() {
-      this.modalWithAnimationOn = false
-      this.currentAction()
+      this.modalOn = false
+      if (this.modalContent === 'slot-machine') {
+        this.currentAction()
+      }
     }
   },
   watch: {
