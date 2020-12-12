@@ -1,6 +1,6 @@
 <template>
     <div class="animation-window">
-      <img src="../../assets/gif/slot-machine.gif" alt="404 :(">
+      <img src="@/assets/gif/slot-machine.gif" alt="404 :(">
     </div>
 </template>
 

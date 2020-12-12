@@ -26,7 +26,7 @@
 <script>
 import TimeSelect from "@/components/configuration/TimeSelect";
 import SettingsGif from "@/components/configuration/SettingsGif";
-import PeopleContainer from "@/components/configuration/PeopleContainer";
+import PeopleContainer from "@/components/configuration/participants/ParticipantsContainer";
 import PersonInput from "@/components/configuration/PersonInput";
 
 export default {

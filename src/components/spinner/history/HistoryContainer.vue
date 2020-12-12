@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import PersonStatisticsCard from "@/components/spinner/PersonStatisticsCard";
+import PersonStatisticsCard from "@/components/spinner/history/content/PersonStatisticsCard";
 export default {
   name: "HistoryContainer",
   components: {PersonStatisticsCard},

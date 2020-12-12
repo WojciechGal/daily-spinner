@@ -27,11 +27,11 @@ import {actions as spinnerActions, getters as spinnerGetters} from '@/store/modu
 import {getters as configGetters} from '@/store/modules/configuration/configuration.module';
 import {DailyCourse} from "@/model/spinner/DailyCourse.model";
 import OperativeButtonsRow from "@/components/spinner/OperativeButtonsRow";
-import Modal from "@/components/spinner/Modal";
-import SlotMachineAnimation from "@/components/spinner/SlotMachineAnimation";
+import Modal from "@/components/spinner/modal/Modal";
+import SlotMachineAnimation from "@/components/spinner/modal/content/SlotMachineAnimation";
 import SpeakerPanel from "@/components/spinner/SpeakerPanel";
-import HistoryContainer from "@/components/spinner/HistoryContainer";
-import Card from "@/components/spinner/Card";
+import HistoryContainer from "@/components/spinner/history/HistoryContainer";
+import Card from "@/components/spinner/modal/content/Card";
 
 export default {
   name: "Spinner",

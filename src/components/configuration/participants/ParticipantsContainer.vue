@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import Person from "@/components/configuration/PersonCard";
+import Person from "@/components/configuration/participants/content/PersonCard";
 import {
   actions,
   getters
