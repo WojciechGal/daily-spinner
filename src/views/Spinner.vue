@@ -1,8 +1,7 @@
 <template>
   <v-container>
-    <Modal v-if="slotMachineTurnedOn">
-      <SlotMachineAnimation slot="animation"/>
-      max-width="290"
+    <Modal v-if="modalWithAnimationOn" :timeout="modalTimeout" @modal-closed="executeAction">
+      <SlotMachineAnimation v-if="modalAnimationType === 'slot-machine'" slot="animation"/>
     </Modal>
     <OperativeButtonsRow
         :daily-course="getDailyCourse"
@@ -37,7 +36,10 @@ export default {
   components: {HistoryContainer, SpeakerPanel, Modal, SlotMachineAnimation, OperativeButtonsRow},
   data() {
     return {
-      slotMachineTurnedOn: false
+      modalWithAnimationOn: false,
+      modalTimeout: Number,
+      modalAnimationType: '',
+      currentAction: Function
     }
   },
   computed: {
@@ -54,21 +56,16 @@ export default {
       return spinnerGetters.activeClock()
     }
   },
-  //todo w widoku spinnera: animacje kartek, testy na tel.
   methods: {
     startDaily() {
       const currentConfig = this.getConfig
-      this.invokeActionAfterAnimation(
-          () => spinnerActions.startDaily(new DailyCourse(currentConfig)),
-          4900
-      )
+      this.currentAction = () => spinnerActions.startDaily(new DailyCourse(currentConfig))
+      this.turnOnSlotAnimation(4900)
     },
     nextPerson() {
       spinnerActions.stopClock()
-      this.invokeActionAfterAnimation(
-          () => spinnerActions.nextPerson(),
-          4900
-      )
+      this.currentAction = () => spinnerActions.nextPerson()
+      this.turnOnSlotAnimation(4900)
     },
     finishDaily() {
       spinnerActions.finishDaily()
@@ -79,18 +76,14 @@ export default {
     giveRedCard() {
       spinnerActions.giveRedCard()
     },
-    turnOnDrawingAnimation() {
-      this.slotMachineTurnedOn = true
+    turnOnSlotAnimation(timeout) {
+      this.modalAnimationType = 'slot-machine'
+      this.modalTimeout = timeout
+      this.modalWithAnimationOn = true
     },
-    turnOffDrawingAnimation() {
-      this.slotMachineTurnedOn = false
-    },
-    invokeActionAfterAnimation(action, timeout) {
-      this.turnOnDrawingAnimation()
-      setTimeout(() => {
-        this.turnOffDrawingAnimation()
-        action()
-      }, timeout)
+    executeAction() {
+      this.modalWithAnimationOn = false
+      this.currentAction()
     }
   },
   watch: {

@@ -7,7 +7,6 @@
 <script>
 export default {
   name: "SlotMachineAnimation"
-  //todo add cooler animation and create ending opacity
 }
 </script>
 
