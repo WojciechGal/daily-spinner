@@ -1,14 +1,17 @@
 <template>
   <v-row justify="center">
     <v-card
-      color="red"
-      width="500"
-      class="ma-3"
+        color="red"
+        width="500"
+        class="ma-3"
     >
       <v-row>
         <v-col>
           <p class="speaker">
-            Now speaks: {{speaker.name}}
+            Now speaks:
+            <span class="person-name-span">
+              {{ speaker.name }}
+            </span>
           </p>
         </v-col>
       </v-row>
@@ -24,6 +27,7 @@
 <script>
 
 import Clock from "@/components/spinner/Clock";
+
 export default {
   name: "SpeakerPanel",
   components: {Clock},
@@ -52,6 +56,10 @@ export default {
   letter-spacing: 0.03em;
   font-size: 30px;
   margin-bottom: 0;
+}
+
+.person-name-span {
+  font-weight: bold;
 }
 
 </style>

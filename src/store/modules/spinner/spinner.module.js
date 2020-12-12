@@ -18,10 +18,12 @@ export const actions = {
         activePersonActions.setActivePerson(drawPerson(getters.dailyCourse().notFinishedPeople))
         activeClockActions.setActiveClock(new Clock(dailyCourse.timePerPerson))
     },
+    stopClock: () => activeClockActions.stopClock(),
     nextPerson: function () {
         dailyCourseActions.transferDailyPerson(activePersonGetters.activePerson(), convertSecToMin(activeClockGetters.activeClock().timeElapsed))
         activeClockActions.resetClock()
         activePersonActions.setActivePerson(drawPerson(getters.dailyCourse().notFinishedPeople))
+        activeClockActions.startClock()
     },
     finishDaily: function () {
         dailyCourseActions.transferDailyPerson(activePersonGetters.activePerson(), convertSecToMin(activeClockGetters.activeClock().timeElapsed))

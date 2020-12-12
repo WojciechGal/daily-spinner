@@ -17,6 +17,8 @@ export const actions = {
         mutations.overrideActiveClock(clock)
         mutations.startClock()
     },
+    stopClock: () => mutations.stopClock(),
+    startClock: () => mutations.startClock(),
     resetClock: () => mutations.resetClock(),
     dismantleActiveClock: function () {
         mutations.stopClock()

@@ -26,19 +26,13 @@ export default {
   text-align: center;
   background-image: url(./assets/wallpaper/casino.jpg);
   background-size: cover;
-  height: 100%;
-  margin-left: -2px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /*styles needed for hide vuetify automatic scrollbar*/
 html {
-  overflow: hidden !important;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  overflow-y: auto !important;
 }
 
-html::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
 </style>

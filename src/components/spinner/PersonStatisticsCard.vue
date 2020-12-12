@@ -5,7 +5,7 @@
       class="ma-1 statistics-card"
   >
     <v-row align="center">
-      <v-col>
+      <v-col class="person-name-column">
         {{personStatistics.name}}
       </v-col>
     </v-row>
@@ -50,6 +50,12 @@ export default {
 
 .statistics-card {
   font-family: Candara, serif;
+  font-size: 18px;
+}
+
+.person-name-column {
+  font-weight: bold;
+  font-size: 22px
 }
 
 </style>
