@@ -17,7 +17,10 @@
     <v-row align="center">
       <v-col>
         Cards:
-        <template v-for="(card, index) in personStatistics.cards">
+        <span v-if="!personStatistics.cards.length">
+          None
+        </span>
+        <template v-else v-for="(card, index) in personStatistics.cards">
           <span
               :key="card.id"
               v-if="index < personStatistics.cards.length - 1">
