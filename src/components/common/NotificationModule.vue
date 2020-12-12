@@ -34,7 +34,7 @@ export default {
 <style scoped>
 
 .notification-wrapper {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 16px;
   z-index: 9;
