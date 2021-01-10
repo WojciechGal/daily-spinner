@@ -10,12 +10,14 @@
         @next-person="nextPerson"
         @finish-daily="finishDaily"
     />
-    <SpeakerPanel
-        v-if="getActivePerson && getActiveClock"
-        :speaker="getActivePerson"
-        :clock="getActiveClock"
-    />
-    <transition name="container">
+    <transition name="panel">
+      <SpeakerPanel
+          v-if="getActivePerson && getActiveClock"
+          :speaker="getActivePerson"
+          :clock="getActiveClock"
+      />
+    </transition>
+    <transition name="panel">
       <HistoryContainer
           v-if="getDailyCourse && getDailyCourse.finishedPeople.length"
           :finished-people="getDailyCourse.finishedPeople"
@@ -38,7 +40,7 @@ import Card from "@/components/spinner/modal/content/Card";
 export default {
   name: "Spinner",
   components: {Card, HistoryContainer, SpeakerPanel, Modal, SlotMachineAnimation, OperativeButtonsRow},
-  //todo refactor -> implement disperse spinner system
+  //todo refactor -> implement disperse spinner system AND rebuild html in Spinner like Configuration
   data() {
     return {
       modalOn: false,
@@ -117,11 +119,11 @@ export default {
 
 <style scoped>
 
-.container-enter-active, .container-leave-active {
+.panel-enter-active, .panel-leave-active {
   transition: all 1s;
 }
 
-.container-enter, .container-leave-active {
+.panel-enter, .panel-leave-active {
   opacity: 0;
   transform: translateX(-30px);
 }

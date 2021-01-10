@@ -2,25 +2,36 @@
   <v-card
       width="400"
       color="red"
-      class="ma-3 internal-padding"
+      class="ma-3 internal-padding container-card"
+      ref="containerCard"
   >
     <v-row justify="center">
       <div class="card-title">Participants:</div>
     </v-row>
-    <transition name="people">
-      <div v-if="getConfig.people.length === 0">
-        No people assign for daily
+    <div class="grid-wrapper">
+      <div class="grid-element">
+        <transition name="people">
+          <div v-if="getConfig.people.length === 0">
+            No people assign for daily
+          </div>
+        </transition>
       </div>
-    </transition>
-    <transition-group name="people">
-      <template v-for="person in getConfig.people">
-        <v-row justify="center" :key="person.id">
-          <v-col align="center">
-            <PersonCard :person="person" @remove="removePerson"/>
-          </v-col>
-        </v-row>
-      </template>
-    </transition-group>
+      <div class="grid-element">
+        <transition-group
+            name="people"
+            @before-enter="beforeEnterPersonElement"
+            @before-leave="beforeLeavePersonElement"
+        >
+          <template v-for="person in getConfig.people">
+            <v-row justify="center" :key="person.id">
+              <v-col align="center">
+                <PersonCard :person="person" @remove="removePerson"/>
+              </v-col>
+            </v-row>
+          </template>
+        </transition-group>
+      </div>
+    </div>
   </v-card>
 </template>
 
@@ -37,12 +48,31 @@ export default {
   methods: {
     removePerson(id) {
       actions.removePerson(id)
+    },
+    adjustContainerHeight() {
+      const peopleLength = this.getConfig.people.length
+      if (peopleLength < 1) {
+        this.$refs.containerCard.$el.style.height = '72px'
+      } else {
+        this.$refs.containerCard.$el.style.height = peopleLength * 108 + 46 + 'px'
+      }
+    },
+    beforeEnterPersonElement() {
+      this.adjustContainerHeight()
+    },
+    beforeLeavePersonElement() {
+      setTimeout(() => {
+        this.adjustContainerHeight()
+      }, 1000)
     }
   },
   computed: {
     getConfig() {
       return getters.configuration()
     }
+  },
+  mounted() {
+    this.adjustContainerHeight()
   }
 }
 </script>
@@ -59,13 +89,32 @@ export default {
   font-weight: bold;
 }
 
-.people-enter-active, .people-leave-active {
+.container-card {
+  transition: height 1s linear;
+  overflow: hidden;
+}
+
+.people-enter-active {
+  transition: all 1s;
+  transition-delay: 1s;
+}
+
+.people-leave-active {
   transition: all 1s;
 }
 
-.people-enter, .people-leave-active {
+.people-enter, .people-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+
+.grid-wrapper {
+  display: grid;
+}
+
+.grid-element {
+  grid-column: 1;
+  grid-row: 1;
 }
 
 </style>
