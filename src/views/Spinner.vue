@@ -43,7 +43,6 @@ export default {
   //todo refactor -> implement disperse spinner system AND rebuild html in Spinner like Configuration
   //todo AND research mobile wallpaper bug
   //todo moves between now speaks AND list of finished speakers
-  //todo AND moves during remove first or middle speaker in configuration
   data() {
     return {
       modalOn: false,

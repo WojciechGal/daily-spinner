@@ -10,7 +10,7 @@
     </v-row>
     <div class="grid-wrapper">
       <div class="grid-element">
-        <transition name="people">
+        <transition name="empty-people">
           <div v-if="getConfig.people.length === 0">
             No people assign for daily
           </div>
@@ -90,22 +90,38 @@ export default {
 }
 
 .container-card {
-  transition: height 1s linear;
+  transition: height 1s ease;
   overflow: hidden;
 }
 
+.people-move {
+  transition: transform 1s ease;
+  transition-delay: 1s;
+}
+
 .people-enter-active {
-  transition: all 1s;
+  transition: all 1s ease;
   transition-delay: 1s;
 }
 
 .people-leave-active {
-  transition: all 1s;
+  position: absolute;
+  width: 107%;
+  transition: all 1s ease;
 }
 
 .people-enter, .people-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+
+.empty-people-enter, .empty-people-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.empty-people-enter-active, .empty-people-leave-active {
+  transition: all 1s ease;
 }
 
 .grid-wrapper {
