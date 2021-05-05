@@ -1,6 +1,6 @@
 <template>
   <v-card
-      width="400"
+      width="420"
       color="red"
       class="ma-3 internal-padding container-card"
       ref="containerCard"
@@ -95,7 +95,7 @@ export default {
 }
 
 .people-move {
-  transition: transform 1s ease;
+  transition: all 1s ease;
   transition-delay: 1s;
 }
 
@@ -115,13 +115,13 @@ export default {
   transform: translateX(30px);
 }
 
+.empty-people-enter-active, .empty-people-leave-active {
+  transition: all 1s ease;
+}
+
 .empty-people-enter, .empty-people-leave-to {
   opacity: 0;
   transform: translateX(30px);
-}
-
-.empty-people-enter-active, .empty-people-leave-active {
-  transition: all 1s ease;
 }
 
 .grid-wrapper {

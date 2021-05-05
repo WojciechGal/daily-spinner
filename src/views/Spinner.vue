@@ -10,19 +10,19 @@
         @next-person="nextPerson"
         @finish-daily="finishDaily"
     />
-    <transition name="panel">
+    <transition-group tag="div" name="panel">
       <SpeakerPanel
+          key="speaker-panel"
           v-if="getActivePerson && getActiveClock"
           :speaker="getActivePerson"
           :clock="getActiveClock"
       />
-    </transition>
-    <transition name="panel">
       <HistoryContainer
+          key="history-container"
           v-if="getDailyCourse && getDailyCourse.finishedPeople.length"
           :finished-people="getDailyCourse.finishedPeople"
       />
-    </transition>
+    </transition-group>
   </v-container>
 </template>
 
@@ -42,7 +42,6 @@ export default {
   components: {Card, HistoryContainer, SpeakerPanel, Modal, SlotMachineAnimation, OperativeButtonsRow},
   //todo refactor -> implement disperse spinner system AND rebuild html in Spinner like Configuration
   //todo AND research mobile wallpaper bug
-  //todo moves between now speaks AND list of finished speakers
   data() {
     return {
       modalOn: false,
@@ -121,11 +120,22 @@ export default {
 
 <style scoped>
 
-.panel-enter-active, .panel-leave-active {
+.panel-move {
+  transition: all 1s ease;
+  transition-delay: 1s;
+}
+
+.panel-enter-active {
   transition: all 1s;
 }
 
-.panel-enter, .panel-leave-active {
+.panel-leave-active {
+  position: absolute;
+  width: 77%;
+  transition: all 1s;
+}
+
+.panel-enter, .panel-leave-to {
   opacity: 0;
   transform: translateX(-30px);
 }
