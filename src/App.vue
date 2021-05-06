@@ -38,6 +38,7 @@ export default {
 /*html {*/
 /*  overflow-y: auto !important;*/
 /*}*/
-/*scrollbar returned due to bug in move vue transition-group with elements from vuetify jumping*/
+/*scrollbar returned due to bug in `-move` with vue transition-group with elements jumping on scrollbar on/off*/
+/*error could be avoided with classic css transition but require components to be rebuilt*/
 
 </style>
