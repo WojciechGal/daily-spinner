@@ -1,12 +1,22 @@
 <template>
-    <div class="animation-window">
-      <img src="@/assets/gif/slot-machine.gif" alt="404 :(">
+    <div id="window" class="animation-window">
+      <img id="gif" src="@/assets/gif/slot-machine.gif" alt="404 :(">
     </div>
 </template>
 
 <script>
 export default {
-  name: "SlotMachineAnimation"
+  name: "SlotMachineAnimation",
+  mounted() {
+    //mobile workaround for restarting gifs
+    const img = document.getElementById("gif");
+    img.style = "display: none;";
+    img.style = "display: block;";
+    setTimeout(() => {
+      // eslint-disable-next-line no-self-assign
+      img.src = img.src;
+    }, 0);
+  }
 }
 </script>
 

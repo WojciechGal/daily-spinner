@@ -32,7 +32,8 @@ export default {
 }
 
 .tabs {
-  width: calc(100vw - 17px);
+  width: calc(100vw - 34px);
+  margin-left: 17px;
   margin-right: 17px;
 }
 
