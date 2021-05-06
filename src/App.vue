@@ -27,9 +27,9 @@ export default {
   text-align: center;
 
   background-image: url(./assets/wallpaper/casino.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-position: left top;
   background-attachment: fixed;
+  background-size: 1800px;
 
   font-family: Candara ,serif;
 }

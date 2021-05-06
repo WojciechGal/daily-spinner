@@ -10,19 +10,19 @@
         @next-person="nextPerson"
         @finish-daily="finishDaily"
     />
-    <transition-group tag="div" name="panel">
-      <SpeakerPanel
-          key="speaker-panel"
-          v-if="getActivePerson && getActiveClock"
-          :speaker="getActivePerson"
-          :clock="getActiveClock"
-      />
-      <HistoryContainer
-          key="history-container"
-          v-if="getDailyCourse && getDailyCourse.finishedPeople.length"
-          :finished-people="getDailyCourse.finishedPeople"
-      />
-    </transition-group>
+      <transition-group name="panel" @before-leave="beforeTransitionGroupElementLeave">
+        <SpeakerPanel
+            key="speaker-panel"
+            v-if="getActivePerson && getActiveClock"
+            :speaker="getActivePerson"
+            :clock="getActiveClock"
+        />
+        <HistoryContainer
+            key="history-container"
+            v-if="getDailyCourse && getDailyCourse.finishedPeople.length"
+            :finished-people="getDailyCourse.finishedPeople"
+        />
+      </transition-group>
   </v-container>
 </template>
 
@@ -36,12 +36,12 @@ import SlotMachineAnimation from "@/components/spinner/modal/content/SlotMachine
 import SpeakerPanel from "@/components/spinner/SpeakerPanel";
 import HistoryContainer from "@/components/spinner/history/HistoryContainer";
 import Card from "@/components/spinner/modal/content/Card";
+import setUpStyleBeforeTransition from "@/utils/common/style.utils";
 
 export default {
   name: "Spinner",
   components: {Card, HistoryContainer, SpeakerPanel, Modal, SlotMachineAnimation, OperativeButtonsRow},
   //todo refactor -> implement disperse spinner system AND rebuild html in Spinner like Configuration
-  //todo AND research mobile wallpaper bug
   data() {
     return {
       modalOn: false,
@@ -100,6 +100,9 @@ export default {
       if (this.modalContent === 'slot-machine') {
         this.currentAction()
       }
+    },
+    beforeTransitionGroupElementLeave(el) {
+      setUpStyleBeforeTransition(el)
     }
   },
   watch: {
@@ -131,8 +134,7 @@ export default {
 
 .panel-leave-active {
   position: absolute;
-  width: 77%;
-  transition: all 1s;
+  transition: all 1s ease;
 }
 
 .panel-enter, .panel-leave-to {

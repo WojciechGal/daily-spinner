@@ -9,12 +9,9 @@
         <transition-group
           name="people"
           @before-enter="beforeEnterPersonElement"
-          @before-leave="beforeLeavePersonElement"
         >
           <template v-for="person in finishedPeople">
-            <v-row
-                :key="person.id"
-            >
+            <v-row :key="person.id">
               <v-col align="center">
                 <PersonStatisticsCard :person-statistics="person"/>
               </v-col>
@@ -42,11 +39,6 @@ export default {
     },
     beforeEnterPersonElement() {
       this.adjustContainerHeight()
-    },
-    beforeLeavePersonElement() {
-      setTimeout(() => {
-        this.adjustContainerHeight()
-      }, 1000)
     }
   }
 }
@@ -66,9 +58,11 @@ export default {
   transition: all 1s;
   transition-delay: 1s;
 }
+
 .people-leave-active {
   transition: all 1s;
 }
+
 .people-enter, .people-leave-to {
   opacity: 0;
   transform: translateX(30px);

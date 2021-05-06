@@ -41,6 +41,7 @@ import {
   actions,
   getters
 } from '@/store/modules/configuration/configuration.module';
+import setUpStyleBeforeTransition from "@/utils/common/style.utils";
 
 export default {
   name: "PeopleContainer",
@@ -60,7 +61,8 @@ export default {
     beforeEnterPersonElement() {
       this.adjustContainerHeight()
     },
-    beforeLeavePersonElement() {
+    beforeLeavePersonElement(el) {
+      setUpStyleBeforeTransition(el)
       setTimeout(() => {
         this.adjustContainerHeight()
       }, 1000)
@@ -106,7 +108,6 @@ export default {
 
 .people-leave-active {
   position: absolute;
-  width: 107%;
   transition: all 1s ease;
 }
 
