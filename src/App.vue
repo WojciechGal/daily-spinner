@@ -3,8 +3,8 @@
     <v-app>
       <Header/>
       <NotificationModule/>
-      <main>
-        <router-view />
+      <main class="main">
+        <router-view/>
       </main>
     </v-app>
   </div>
@@ -21,6 +21,12 @@ export default {
 </script>
 
 <style>
+
+/*styles needed for hide vuetify automatic scrollbar*/
+html {
+  overflow-y: auto !important;
+}
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -31,14 +37,12 @@ export default {
   background-attachment: fixed;
   background-size: 1800px;
 
-  font-family: Candara ,serif;
+  font-family: Candara, serif;
 }
 
-/*styles needed for hide vuetify automatic scrollbar*/
-/*html {*/
-/*  overflow-y: auto !important;*/
-/*}*/
-/*scrollbar returned due to bug in `-move` with vue transition-group with elements jumping on scrollbar on/off*/
-/*error could be avoided with classic css transition but require components to be rebuilt*/
+.main {
+  width: calc(100vw - 17px);
+  margin-right: 17px;
+}
 
 </style>

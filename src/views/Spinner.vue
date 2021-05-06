@@ -90,6 +90,7 @@ export default {
 </script>
 
 <style scoped>
+/*for advanced transitions as these - using custom transitions and components is recommended*/
 
 .panel-move {
   transition: all 1s ease;

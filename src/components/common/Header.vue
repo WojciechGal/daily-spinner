@@ -1,6 +1,7 @@
 <template>
-  <header>
+  <header class="header">
     <v-tabs
+        class="tabs"
         fixed-tabs
         background-color="red"
         color="black"
@@ -25,5 +26,14 @@ export default {
 </script>
 
 <style scoped>
+
+.header {
+  background-color: #f44336;
+}
+
+.tabs {
+  width: calc(100vw - 17px);
+  margin-right: 17px;
+}
 
 </style>

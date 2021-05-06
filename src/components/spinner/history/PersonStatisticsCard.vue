@@ -1,6 +1,6 @@
 <template>
   <v-card
-      width="600"
+      width="475"
       color="red"
       class="ma-0 statistics-card"
   >

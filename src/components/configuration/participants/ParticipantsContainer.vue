@@ -1,6 +1,6 @@
 <template>
   <v-card
-      width="420"
+      width="400"
       color="red"
       class="ma-3 internal-padding container-card"
       ref="containerCard"
