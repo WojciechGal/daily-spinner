@@ -1,39 +1,46 @@
 <template>
   <v-container>
-    <Modal v-if="modalOn" :timeout="modalTimeout" @modal-closed="executeAction">
-      <SlotMachineAnimation v-if="modalContent === 'slot-machine'" slot="content"/>
-      <Card v-else :card-type="modalContent" slot="content"/>
+    <Modal
+        v-if="modalOn"
+        :timeout="modalTimeout"
+        @modal-closed="handleModalClosure"
+    >
+      <SlotMachineAnimation
+          v-if="modalContent === 'slot-machine'"
+          slot="content"
+      />
+      <Card
+          v-else
+          :card-type="modalContent"
+          slot="content"
+      />
     </Modal>
     <OperativeButtonsRow
-        :daily-course="getDailyCourse"
-        @start-daily="startDaily"
-        @next-person="nextPerson"
-        @finish-daily="finishDaily"
+        ref="operativeButtons"
+        @set-up-modal="setUpModal"
     />
-    <transition-group name="panel" @before-leave="beforeTransitionGroupElementLeave">
+    <transition-group
+        name="panel"
+        @before-leave="beforeTransitionGroupElementLeave"
+    >
       <v-row
           justify="center"
           key="speaker-row"
           v-if="getActivePerson && getActiveClock">
-        <SpeakerPanel
-            :speaker="getActivePerson"
-            :clock="getActiveClock"
-        />
+        <SpeakerPanel @set-up-modal="setUpModal"/>
       </v-row>
       <v-row
           justify="center"
           key="history-container"
           v-if="getDailyCourse && getDailyCourse.finishedPeople.length">
-        <HistoryContainer :finished-people="getDailyCourse.finishedPeople"/>
+        <HistoryContainer/>
       </v-row>
     </transition-group>
   </v-container>
 </template>
 
 <script>
-import {actions as spinnerActions, getters as spinnerGetters} from '@/store/modules/spinner/spinner.module';
-import {getters as configGetters} from '@/store/modules/configuration/configuration.module';
-import {DailyCourse} from "@/model/spinner/DailyCourse.model";
+import {getters as spinnerGetters} from '@/store/modules/spinner/spinner.module';
 import OperativeButtonsRow from "@/components/spinner/OperativeButtonsRow";
 import Modal from "@/components/spinner/modal/Modal";
 import SlotMachineAnimation from "@/components/spinner/modal/SlotMachineAnimation";
@@ -45,19 +52,14 @@ import setUpStyleBeforeTransition from "@/utils/common/style.utils";
 export default {
   name: "Spinner",
   components: {Card, HistoryContainer, SpeakerPanel, Modal, SlotMachineAnimation, OperativeButtonsRow},
-  //todo refactor -> implement disperse spinner system
   data() {
     return {
       modalOn: false,
       modalTimeout: Number,
-      modalContent: '',
-      currentAction: Function
+      modalContent: ''
     }
   },
   computed: {
-    getConfig() {
-      return configGetters.configuration()
-    },
     getDailyCourse() {
       return spinnerGetters.dailyCourse()
     },
@@ -69,57 +71,19 @@ export default {
     }
   },
   methods: {
-    startDaily() {
-      const currentConfig = this.getConfig
-      this.currentAction = () => spinnerActions.startDaily(new DailyCourse(currentConfig))
-      this.turnOnSlotAnimation(4900)
-    },
-    nextPerson() {
-      spinnerActions.stopClock()
-      this.currentAction = () => spinnerActions.nextPerson()
-      this.turnOnSlotAnimation(4900)
-    },
-    finishDaily() {
-      spinnerActions.finishDaily()
-    },
-    giveYellowCard() {
-      spinnerActions.giveYellowCard()
-      this.modalContent = 'yellow-card'
-      this.modalTimeout = 2500
-      this.modalOn = true
-    },
-    giveRedCard() {
-      spinnerActions.giveRedCard()
-      this.modalContent = 'red-card'
-      this.modalTimeout = 2500
-      this.modalOn = true
-    },
-    turnOnSlotAnimation(timeout) {
-      this.modalContent = 'slot-machine'
+    setUpModal(content, timeout) {
+      this.modalContent = content
       this.modalTimeout = timeout
       this.modalOn = true
     },
-    executeAction() {
+    handleModalClosure() {
       this.modalOn = false
       if (this.modalContent === 'slot-machine') {
-        this.currentAction()
+        this.$refs.operativeButtons.executeCurrentAction()
       }
     },
     beforeTransitionGroupElementLeave(el) {
       setUpStyleBeforeTransition(el)
-    }
-  },
-  watch: {
-    getActiveClock: {
-      deep: true,
-      immediate: true,
-      handler: function (clock) {
-        if (clock !== null && clock?.timeElapsed === (clock?.timeGiven / 2)) {
-          this.giveYellowCard()
-        } else if (clock !== null && clock?.timeElapsed === clock?.timeGiven) {
-          this.giveRedCard()
-        }
-      }
     }
   }
 }

@@ -1,7 +1,7 @@
 import {actions as activePersonActions, getters as activePersonGetters} from '@/store/modules/spinner/activePerson.module';
 import {actions as activeClockActions, getters as activeClockGetters} from '@/store/modules/spinner/activeClock.module';
 import {actions as dailyCourseActions, getters as dailyCourseGetters} from '@/store/modules/spinner/dailyCourse.module';
-import {drawPerson} from "@/utils/spinner/random.utils";
+import drawPerson from "@/utils/spinner/random.utils";
 import {Clock} from "@/model/spinner/Clock.model";
 import convertSecToMin from "@/utils/spinner/time.utils";
 import {getRedCard, getYellowCard} from "@/utils/spinner/card.utils";

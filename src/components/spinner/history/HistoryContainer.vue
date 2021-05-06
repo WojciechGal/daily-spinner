@@ -9,7 +9,7 @@
         name="people"
         @before-enter="beforeEnterPersonElement"
     >
-      <template v-for="person in finishedPeople">
+      <template v-for="person in getDailyCourse.finishedPeople">
         <v-row :key="person.id">
           <v-col align="center">
             <PersonStatisticsCard :person-statistics="person"/>
@@ -22,19 +22,19 @@
 
 <script>
 import PersonStatisticsCard from "@/components/spinner/history/PersonStatisticsCard";
+import {getters as spinnerGetters} from "@/store/modules/spinner/spinner.module";
 
 export default {
   name: "HistoryContainer",
   components: {PersonStatisticsCard},
-  props: {
-    finishedPeople: {
-      type: Array,
-      required: true
+  computed: {
+    getDailyCourse() {
+      return spinnerGetters.dailyCourse()
     }
   },
   methods: {
     adjustContainerHeight() {
-      this.$refs.containerCard.$el.style.height = (this.finishedPeople.length * 183 + 16) + 'px'
+      this.$refs.containerCard.$el.style.height = (this.getDailyCourse.finishedPeople.length * 183 + 16) + 'px'
     },
     beforeEnterPersonElement() {
       this.adjustContainerHeight()
