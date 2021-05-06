@@ -1,27 +1,25 @@
 <template>
-  <v-row justify="center">
-    <v-card
-        color="red"
-        width="500"
-        class="ma-3"
-    >
-      <v-row>
-        <v-col>
-          <p class="speaker">
-            Now speaks:
-            <span class="person-name-span">
+  <v-card
+      color="red"
+      width="500"
+      class="ma-3"
+  >
+    <v-row>
+      <v-col>
+        <p class="speaker">
+          Now speaks:
+          <span class="person-name-span">
               {{ speaker.name }}
             </span>
-          </p>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <Clock :seconds-left="clock.timeLeft"/>
-        </v-col>
-      </v-row>
-    </v-card>
-  </v-row>
+        </p>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <Clock :seconds-left="clock.timeLeft"/>
+      </v-col>
+    </v-row>
+  </v-card>
 </template>
 
 <script>

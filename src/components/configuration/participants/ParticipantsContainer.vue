@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import PersonCard from "@/components/configuration/participants/content/PersonCard";
+import PersonCard from "@/components/configuration/participants/PersonCard";
 import {
   actions,
   getters

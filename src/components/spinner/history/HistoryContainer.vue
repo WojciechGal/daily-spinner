@@ -1,29 +1,28 @@
 <template>
-    <v-row justify="center">
-      <v-card
-          color="red"
-          width="700"
-          class="ma-3 container-card"
-          ref="containerCard"
-      >
-        <transition-group
-          name="people"
-          @before-enter="beforeEnterPersonElement"
-        >
-          <template v-for="person in finishedPeople">
-            <v-row :key="person.id">
-              <v-col align="center">
-                <PersonStatisticsCard :person-statistics="person"/>
-              </v-col>
-            </v-row>
-          </template>
-        </transition-group>
-      </v-card>
-    </v-row>
+  <v-card
+      color="red"
+      width="700"
+      class="ma-3 container-card"
+      ref="containerCard"
+  >
+    <transition-group
+        name="people"
+        @before-enter="beforeEnterPersonElement"
+    >
+      <template v-for="person in finishedPeople">
+        <v-row :key="person.id">
+          <v-col align="center">
+            <PersonStatisticsCard :person-statistics="person"/>
+          </v-col>
+        </v-row>
+      </template>
+    </transition-group>
+  </v-card>
 </template>
 
 <script>
-import PersonStatisticsCard from "@/components/spinner/history/content/PersonStatisticsCard";
+import PersonStatisticsCard from "@/components/spinner/history/PersonStatisticsCard";
+
 export default {
   name: "HistoryContainer",
   components: {PersonStatisticsCard},

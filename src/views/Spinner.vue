@@ -10,19 +10,23 @@
         @next-person="nextPerson"
         @finish-daily="finishDaily"
     />
-      <transition-group name="panel" @before-leave="beforeTransitionGroupElementLeave">
+    <transition-group name="panel" @before-leave="beforeTransitionGroupElementLeave">
+      <v-row
+          justify="center"
+          key="speaker-row"
+          v-if="getActivePerson && getActiveClock">
         <SpeakerPanel
-            key="speaker-panel"
-            v-if="getActivePerson && getActiveClock"
             :speaker="getActivePerson"
             :clock="getActiveClock"
         />
-        <HistoryContainer
-            key="history-container"
-            v-if="getDailyCourse && getDailyCourse.finishedPeople.length"
-            :finished-people="getDailyCourse.finishedPeople"
-        />
-      </transition-group>
+      </v-row>
+      <v-row
+          justify="center"
+          key="history-container"
+          v-if="getDailyCourse && getDailyCourse.finishedPeople.length">
+        <HistoryContainer :finished-people="getDailyCourse.finishedPeople"/>
+      </v-row>
+    </transition-group>
   </v-container>
 </template>
 
@@ -32,16 +36,16 @@ import {getters as configGetters} from '@/store/modules/configuration/configurat
 import {DailyCourse} from "@/model/spinner/DailyCourse.model";
 import OperativeButtonsRow from "@/components/spinner/OperativeButtonsRow";
 import Modal from "@/components/spinner/modal/Modal";
-import SlotMachineAnimation from "@/components/spinner/modal/content/SlotMachineAnimation";
+import SlotMachineAnimation from "@/components/spinner/modal/SlotMachineAnimation";
 import SpeakerPanel from "@/components/spinner/SpeakerPanel";
 import HistoryContainer from "@/components/spinner/history/HistoryContainer";
-import Card from "@/components/spinner/modal/content/Card";
+import Card from "@/components/spinner/modal/Card";
 import setUpStyleBeforeTransition from "@/utils/common/style.utils";
 
 export default {
   name: "Spinner",
   components: {Card, HistoryContainer, SpeakerPanel, Modal, SlotMachineAnimation, OperativeButtonsRow},
-  //todo refactor -> implement disperse spinner system AND rebuild html in Spinner like Configuration
+  //todo refactor -> implement disperse spinner system
   data() {
     return {
       modalOn: false,
