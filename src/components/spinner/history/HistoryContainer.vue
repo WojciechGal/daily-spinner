@@ -39,6 +39,9 @@ export default {
     beforeEnterPersonElement() {
       this.adjustContainerHeight()
     }
+  },
+  mounted() {
+    this.adjustContainerHeight()
   }
 }
 </script>
@@ -50,7 +53,6 @@ export default {
   padding-bottom: 8px;
   height: 199px;
   transition: height 1s linear;
-  overflow: hidden;
 }
 
 .people-enter-active {

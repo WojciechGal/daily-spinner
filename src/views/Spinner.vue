@@ -15,14 +15,15 @@
           slot="content"
       />
     </Modal>
-    <OperativeButtonsRow
-        ref="operativeButtons"
-        @set-up-modal="setUpModal"
-    />
     <transition-group
         name="panel"
         @before-leave="beforeTransitionGroupElementLeave"
     >
+      <OperativeButtonsRow
+          key="operative-buttons"
+          ref="operativeButtons"
+          @set-up-modal="setUpModal"
+      />
       <v-row
           justify="center"
           key="speaker-row"
@@ -31,7 +32,7 @@
       </v-row>
       <v-row
           justify="center"
-          key="history-container"
+          key="history-container-row"
           v-if="getDailyCourse && getDailyCourse.finishedPeople.length">
         <HistoryContainer/>
       </v-row>
@@ -97,7 +98,7 @@ export default {
 }
 
 .panel-enter-active {
-  transition: all 1s;
+  transition: all 1s ease;
 }
 
 .panel-leave-active {
