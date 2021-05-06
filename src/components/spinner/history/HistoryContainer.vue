@@ -51,17 +51,17 @@ export default {
 .container-card {
   padding-top: 8px;
   padding-bottom: 8px;
-  height: 199px;
-  transition: height 1s linear;
+  transition: height 1s ease;
+  overflow: hidden;
 }
 
 .people-enter-active {
-  transition: all 1s;
+  transition: all 1s ease;
   transition-delay: 1s;
 }
 
 .people-leave-active {
-  transition: all 1s;
+  transition: all 1s ease;
 }
 
 .people-enter, .people-leave-to {

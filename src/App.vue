@@ -38,6 +38,6 @@ export default {
 /*html {*/
 /*  overflow-y: auto !important;*/
 /*}*/
-/*scrollbar returned due to bug in move vue transition-group with elements jumping*/
+/*scrollbar returned due to bug in move vue transition-group with elements from vuetify jumping*/
 
 </style>
