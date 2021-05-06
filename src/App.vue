@@ -35,8 +35,9 @@ export default {
 }
 
 /*styles needed for hide vuetify automatic scrollbar*/
-html {
-  overflow-y: auto !important;
-}
+/*html {*/
+/*  overflow-y: auto !important;*/
+/*}*/
+/*scrollbar returned due to bug in move vue transition-group with elements jumping*/
 
 </style>

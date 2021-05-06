@@ -15,15 +15,14 @@
           slot="content"
       />
     </Modal>
+    <OperativeButtonsRow
+        ref="operativeButtons"
+        @set-up-modal="setUpModal"
+    />
     <transition-group
         name="panel"
         @before-leave="beforeTransitionGroupElementLeave"
     >
-      <OperativeButtonsRow
-          key="operative-buttons"
-          ref="operativeButtons"
-          @set-up-modal="setUpModal"
-      />
       <v-row
           justify="center"
           key="speaker-row"
