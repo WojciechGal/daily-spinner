@@ -80,7 +80,6 @@ export default {
 </script>
 
 <style scoped>
-/*Participants are twitching during animation due to using vuetify multi-prop components*/
 
 .internal-padding {
   padding-top: 8px;
@@ -97,6 +96,8 @@ export default {
   overflow: hidden;
 }
 
+/*Participants are a little bit twitchy during animation due
+to using vuetify multi-prop components and transition-group*/
 .people-move {
   transition: all 1s ease;
   transition-delay: 1s;

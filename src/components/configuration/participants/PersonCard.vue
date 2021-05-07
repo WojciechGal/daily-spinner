@@ -1,6 +1,6 @@
 <template>
   <v-card
-      width="310"
+      width="355"
       color="red"
   >
     <v-row align="center">
