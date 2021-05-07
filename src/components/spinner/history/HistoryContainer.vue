@@ -1,7 +1,7 @@
 <template>
   <v-card
       color="red"
-      width="625"
+      width="645"
       class="ma-3 container-card"
       ref="containerCard"
   >
