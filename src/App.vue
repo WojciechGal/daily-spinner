@@ -1,13 +1,11 @@
 <template>
-  <div id="app">
-    <v-app>
-      <Header/>
-      <NotificationModule/>
-      <main class="main">
-        <router-view/>
-      </main>
-    </v-app>
-  </div>
+  <v-app id="app">
+    <Header/>
+    <NotificationModule/>
+    <main class="main">
+      <router-view/>
+    </main>
+  </v-app>
 </template>
 
 <script>

@@ -80,6 +80,7 @@ export default {
 </script>
 
 <style scoped>
+/*Participants are twitching during animation due to using vuetify multi-prop components*/
 
 .internal-padding {
   padding-top: 8px;
