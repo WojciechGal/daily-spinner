@@ -1,6 +1,6 @@
 <template>
   <v-card
-      width="400"
+      width=400
       color="red"
       class="ma-3 internal-padding container-card"
       ref="containerCard"
@@ -18,6 +18,8 @@
       </div>
       <div class="grid-element">
         <transition-group
+            tag="div"
+            class="participants-transition"
             name="people"
             @before-enter="beforeEnterPersonElement"
             @before-leave="beforeLeavePersonElement"
@@ -134,6 +136,10 @@ to using vuetify multi-prop components and transition-group*/
 .grid-element {
   grid-column: 1;
   grid-row: 1;
+}
+
+.participants-transition {
+  margin-top: 2px;
 }
 
 </style>
